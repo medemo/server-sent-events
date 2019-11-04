@@ -1,15 +1,38 @@
 <html>
 
 <head>
-  <title>Server Sent Event | Joke Garing</title>
+  <title>Server Sent Event</title>
   <link rel="stylesheet" href="style.css">
-  <script src="main.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <style>
+    .input-todo {
+      display: block;
+      margin: 0;
+      padding: 0.4rem 1.6rem;
+      width: 100%;
+      font-size: 1.4rem;
+      border-radius: 0.4rem;
+    }
+  </style>
 </head>
 
 <body>
-  <h1>Random joke every 5 seconds</h1>
-  <p id="setup"></p>
-  <p id="punchline"></p>
+  <section style="display: none;">
+    <h1>Random joke every 5 seconds</h1>
+    <p id="setup"></p>
+    <p id="punchline"></p>
+  </section>
+  <section id="todos">
+    <form @submit.prevent="submitTodo">
+      <input type="text" v-model="newTodo" class="input-todo">
+    </form>
+    <ul>
+      <li v-for="task in todos">
+        {{task.todo}} <span style="color: red" @click="delTodo(task.id)"><strong>X</strong></span>
+      </li>
+    </ul>
+  </section>
+  <script src="main.js"></script>
 </body>
 
 </html>
